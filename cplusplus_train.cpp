@@ -38,6 +38,32 @@ union u1
 	int i;
 };
 
+const char* bin_str(const uint8_t& num) {
+	static char buf[sizeof(num) * 8 + 1];
+	for (char& c : buf) {
+		c = 0;
+	}
+	printf("%s\n", buf);
+	char* buf_p = buf;
+	for (uint8_t bitmask = 0b10000000; bitmask; bitmask >>= 1) {
+		//printf("%s\n", buf);
+		//buf_p--;
+		//printf("%c", *buf_p);
+		//buf_p++;
+		//*(buf_p++) = bitmask & num ? '1' : '0';
+		*buf_p = bitmask & num ? '1' : '0';
+		buf_p++;
+	}
+
+	char* bp = buf;
+	for (char c = *bp; *bp; ++bp) {
+		printf("%c\n", c);
+		c = *bp;
+	}
+
+	return buf;
+}
+
 int main() {
 
 
@@ -77,4 +103,34 @@ int main() {
 	for (auto it = vi.begin(); it != vi.end(); ++it) {
 		printf("%d\n", *it);
 	}
+
+	int xc = 0;
+	int xd = 0;
+
+	//xc = ++xc;
+	//xd = xd++;
+
+	printf("%d\n", ++xc);
+	printf("%d\n", xd++);
+
+
+	int b = 0b10000000;
+	b >>= 1;
+	b >>= 1;
+	b >>= 1;
+	b >>= 1;
+	b >>= 1; //4
+	b >>= 1; //2
+	b >>= 1; //1
+	int x = 5;
+
+	int y = x & b;
+
+
+	printf("%d\n", b);
+	printf("%d\n", y);
+	printf("**************************************");
+	printf("%s\n", bin_str(5));
+
+
 }
