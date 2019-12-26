@@ -1,8 +1,13 @@
 #include<cstdio>
 #include<iostream>
 #include<string>
+#include<vector>
 
 using namespace std;
+
+#ifndef NULL
+#define NULL (0LL)
+#endif
 
 
 enum enum1
@@ -56,4 +61,20 @@ int main() {
 	printf("%c\n", u11.c);
 	printf("%d\n", u11.i);
 
+	auto uux = func();
+	printf("%s\n", uux.c_str());
+	// printf("%s\n", uux); wont work printf only accepts c string
+
+	if (typeid(uux) == typeid(string)) {
+		puts("both are strings");
+	}
+
+	vector<int> vi = { 1,2,3,4,5 };
+	for (vector<int>::iterator it = vi.begin(); it != vi.end(); ++it) {
+		printf("%d\n", *it);
+	}
+
+	for (auto it = vi.begin(); it != vi.end(); ++it) {
+		printf("%d\n", *it);
+	}
 }
