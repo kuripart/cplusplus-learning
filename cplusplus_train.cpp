@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include "Header.h"
 
 using namespace std;
 
@@ -38,6 +39,8 @@ union u1
 	int i;
 };
 
+constexpr size_t count_ = 1024;
+
 const char* bin_str(const uint8_t& num) {
 	static char buf[sizeof(num) * 8 + 1];
 	for (char& c : buf) {
@@ -63,6 +66,11 @@ const char* bin_str(const uint8_t& num) {
 
 	return buf;
 }
+
+
+
+
+
 
 int main() {
 
@@ -133,4 +141,74 @@ int main() {
 	printf("%s\n", bin_str(5));
 
 
+	printf("***************************************************************************************");
+
+	/*long int* ip;
+
+	try {
+		ip = new long int[count_];
+	} catch (std::bad_alloc & ba){
+		return 1;
+	}*/
+
+
+	/*for (int i = 0; i < count_; i++) {
+		ip[i] = i;
+	}*/
+
+	/*for (int i = 0; i < count_; i++) { // this for wont work
+		*ip = i;
+		ip++;
+	}
+
+	for (int i = 0; i < count_; i++) {
+		printf("%d\n", ip[i]);
+	}*/
+
+	// delete[] ip;
+
+
+
+	int xx = 9;
+	int yy = 10;
+	int zz = 11;
+
+	func1(xx);
+	func2(yy);
+	func3(&zz);
+
+
+	printf("%d\n", xx);
+	printf("%d\n", yy);
+	printf("%d\n", zz);
+
+
+	printf("***************************************************************************************");
+
+
+	int (*pffg)() = ffg;
+	int bb = (*pffg)();
+	printf("%d\n", bb);
+
+
+	return 0;
+}
+
+int ffg() {
+	return 1;
+}
+
+
+void func1(int a) {
+	++a;
+}
+
+
+void func2(int& c) {
+	++c;
+}
+
+
+void func3(int* d) {
+	(*d)++; //precendence brackets matter
 }
